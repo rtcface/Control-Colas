@@ -4,12 +4,13 @@ const btnCreate = document.querySelector('button');
 
 const socket = io();
 
-
-
 socket.on('connect', () => {
-    // console.log('Conectado');
-
+    
     btnCreate.disabled = false;
+
+    socket.on('last-ticket', (ticket) => {
+        lblNuevoTicket.innerText='Ticket: '+ticket;
+    })
 
 });
 
@@ -19,12 +20,10 @@ socket.on('disconnect', () => {
 });
 
 
-
-
-
 btnCreate.addEventListener( 'click', () => {
 
     socket.emit( 'next-ticket', null, ( ticket ) => {
+        lblNuevoTicket.innerText=ticket;
         console.log('Desde el server', ticket );
     });
 

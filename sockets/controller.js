@@ -1,12 +1,14 @@
-const TicketControll = require('../models/ticket-control')
+const TicketControl = require('../models/ticket-control')
 
-const ticketControll = new TicketControll();
+const ticketControl = new TicketControl();
 
 const socketController = (socket) => {    
     
    
+    socket.emit('last-ticket',ticketControl.last);
+
     socket.on('next-ticket', ( payload, callback ) => {
-            const next = ticketControll.next();
+            const next = ticketControl.next();
             callback( next );
             
             //TODO: Notify that there is a new pending ticket
