@@ -69,7 +69,7 @@ class TicketControl{
 
         const ticket = this.tickets.shift();
 
-        ticket.desktop = this.desktop;
+        ticket.desktop = desktop;
 
         this.lastFour.unshift(ticket);
 
